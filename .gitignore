@@ -1,3 +1,5 @@
 *.sqlite3
 *.myc
 __pycache__
+.viscode/*
+.gitpod*
