@@ -20,7 +20,7 @@
                 <a href="" class="dropdown-item">Besiege</a>
                 <a href="" class="dropdown-item">Portal</a>
                 <a href="" class="dropdown-item">VVVVVV</a>
-                <a href="" class="dropdown-item">All Puzzles</a>
+                <a href="{% url 'products' %}?category=puzzle" class="dropdown-item">All Puzzles</a>
             </div>
         </li>
 
@@ -32,19 +32,19 @@
                 <a href="" class="dropdown-item">Banished</a>
                 <a href="" class="dropdown-item">Cities: Skylines</a>
                 <a href="" class="dropdown-item">Factorio</a>
-                <a href="" class="dropdown-item">All Buildings</a>
+                <a href="{% url 'products' %}?category=building" class="dropdown-item">All Buildings</a>
             </div>
         </li>
 
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black" href="#" id="specials-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Special Offers
+            <a class="logo-font font-weight-bold nav-link text-black" href="#" id="discount-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Discount Offers
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="specials-link">
+            <div class="dropdown-menu border-0" aria-labelledby="discount-link">
                 <a href="" class="dropdown-item">Don't Starve</a>
                 <a href="" class="dropdown-item">Mini Metro</a>
                 <a href="" class="dropdown-item">Pixel Piracy</a>
-                <a href="" class="dropdown-item">All Specials</a>
+                <a href="{% url 'products' %}?category=discount" class="dropdown-item">All Discounts</a>
             </div>
         </li>
     </ul>
