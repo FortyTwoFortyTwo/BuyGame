@@ -1,0 +1,1 @@
+[{"model": "products.platorm", "pk": 1, "fields": {"name": "pc", "friendly_name": "PC"}}, {"model": "products.platorm", "pk": 2, "fields": {"name": "ps5", "friendly_name": "PS5"}}, {"model": "products.platorm", "pk": 4, "fields": {"name": "xbox", "friendly_name": "Xbox"}}]
