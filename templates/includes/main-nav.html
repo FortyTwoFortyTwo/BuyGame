@@ -13,26 +13,24 @@
         </li>
 
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="puzzle-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Puzzle
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="category-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categories
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="puzzle-link">
-                <a href="" class="dropdown-item">Besiege</a>
-                <a href="" class="dropdown-item">Portal</a>
-                <a href="" class="dropdown-item">VVVVVV</a>
-                <a href="{% url 'products' %}?category=puzzle" class="dropdown-item">All Puzzles</a>
+            <div class="dropdown-menu border-0" aria-labelledby="category-link">
+                {% for category in categories %}
+                    <a href="{% url 'products' %}?category={{ category.name }}" class="dropdown-item">{{ category.friendly_name }}</a>
+                {% endfor %}
             </div>
         </li>
 
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="building-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Building
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="platorm-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Platorms
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="building-link">
-                <a href="" class="dropdown-item">Banished</a>
-                <a href="" class="dropdown-item">Cities: Skylines</a>
-                <a href="" class="dropdown-item">Factorio</a>
-                <a href="{% url 'products' %}?category=building" class="dropdown-item">All Buildings</a>
+            <div class="dropdown-menu border-0" aria-labelledby="platorm-link">
+                {% for platorm in platorms %}
+                    <a href="{% url 'products' %}?category={{ platorm.name }}" class="dropdown-item">{{ platorm.friendly_name }}</a>
+                {% endfor %}
             </div>
         </li>
 

@@ -1,8 +1,14 @@
 from django.shortcuts import render
+from products.models import Category, Platorm
 
 # Create your views here.
 
 def index(request):
     """ A view to return the index page """
 
-    return render(request, 'home/index.html')
+    context = {
+        'categories': Category.objects.all(),
+        'platorms': Platorm.objects.all(),
+    }
+
+    return render(request, 'home/index.html', context)
