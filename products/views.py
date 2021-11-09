@@ -12,6 +12,7 @@ def all_products(request):
     products = Product.objects.all()
     query = None
     categories = None
+    platorms = None
     new = None
     free = None
     discount = None
@@ -39,6 +40,11 @@ def all_products(request):
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
+
+        if 'platorm' in request.GET:
+            platorms = request.GET['platorm'].split(',')
+            products = products.filter(platorms__name__in=platorms)
+            platorms = Platorm.objects.filter(name__in=platorms)
 
         if 'new' in request.GET:
             products = products.filter(new=True)
@@ -69,6 +75,7 @@ def all_products(request):
         'platorms': Platorm.objects.all(),
         'search_term': query,
         'current_categories': categories,
+        'current_platorms': platorms,
         'current_new': new,
         'current_free': free,
         'current_discount': discount,

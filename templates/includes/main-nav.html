@@ -29,7 +29,7 @@
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="platorm-link">
                 {% for platorm in platorms %}
-                    <a href="{% url 'products' %}?category={{ platorm.name }}" class="dropdown-item">{{ platorm.friendly_name }}</a>
+                    <a href="{% url 'products' %}?platorm={{ platorm.name }}" class="dropdown-item">{{ platorm.friendly_name }}</a>
                 {% endfor %}
             </div>
         </li>

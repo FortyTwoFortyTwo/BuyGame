@@ -16,22 +16,27 @@
             <div class="col text-center mt-3">
                 <h2 class="logo-font">Products</h2>
                 {% for c in current_categories %}
-                    <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
+                    <a class="filter-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
+                        <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
+                    </a>
+                {% endfor %}
+                {% for c in current_platorms %}
+                    <a class="filter-badge text-decoration-none" href="{% url 'products' %}?platorm={{ c.name }}">
                         <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
                     </a>
                 {% endfor %}
                 {% if current_new %}
-                    <a class="category-badge text-decoration-none" href="{% url 'products' %}?new">
+                    <a class="filter-badge text-decoration-none" href="{% url 'products' %}?new">
                         <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">New Games</span>
                     </a>
                 {% endif %}
                 {% if current_free %}
-                    <a class="category-badge text-decoration-none" href="{% url 'products' %}?free">
+                    <a class="filter-badge text-decoration-none" href="{% url 'products' %}?free">
                         <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">Free Games</span>
                     </a>
                 {% endif %}
                 {% if current_discount %}
-                    <a class="category-badge text-decoration-none" href="{% url 'products' %}?discount">
+                    <a class="filter-badge text-decoration-none" href="{% url 'products' %}?discount">
                         <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">Discount Games</span>
                     </a>
                 {% endif %}

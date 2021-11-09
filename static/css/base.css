@@ -93,7 +93,7 @@ body {
     z-index: -1;
 }
 
-a.category-badge > span.badge:hover {
+a.filter-badge > span.badge:hover {
     background: #212529 !important;
     color: #fff !important;
 }
