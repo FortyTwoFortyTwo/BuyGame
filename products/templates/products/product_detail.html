@@ -51,7 +51,7 @@
                                 <p><strong>Platorm:</strong></p>
                                 <select class="form-control rounded-0 w-50" name="platorm" id='id_platorm'>
                                     {% for platorm in product.platorms.all %}
-                                        <option value="{{ platorm.name }}">{{ platorm.friendly_name }}</option>
+                                        <option value="{{ platorm.pk }}">{{ platorm.friendly_name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>

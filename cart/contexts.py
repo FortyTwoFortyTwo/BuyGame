@@ -1,7 +1,7 @@
 from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from products.models import Product
+from products.models import Product, Platorm
 
 def cart_contents(request):
 
@@ -10,18 +10,22 @@ def cart_contents(request):
     product_count = 0
     cart = request.session.get('cart', {})
 
-    for item_id, quantity in cart.items():
-        product = get_object_or_404(Product, pk=item_id)
-        total += quantity * product.price
-        product_count += quantity
-        cart_items.append({
-            'item_id': item_id,
-            'quantity': quantity,
-            'product': product,
-        })
+    for item_id, platorms in cart.items():
+        for platorm_id, quantity in platorms.items():
+            product = get_object_or_404(Product, pk=item_id)
+            platorm = get_object_or_404(Platorm, pk=platorm_id)
+
+            total += quantity * product.get_price()
+            product_count += quantity
+            cart_items.append({
+                'item_id': item_id,
+                'platorm': platorm,
+                'quantity': quantity,
+                'product': product,
+            })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
-        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE)
+        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
     else:
         delivery = 0

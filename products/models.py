@@ -45,7 +45,10 @@ class Product(models.Model):
         return self.name
     
     def get_price(self):
-        return round(self.price * (1 - self.discount), 2)
+        if self.discount:
+            return round(self.price * (1 - self.discount), 2)
+        else:
+            return self.price
     
     def get_discount(self):
         return int(self.discount * 100)
