@@ -36,7 +36,15 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    new = models.BooleanField(default=False)
+    discount = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
         return self.name
+    
+    def get_price(self):
+        return round(self.price * (1 - self.discount), 2)
+    
+    def get_discount(self):
+        return int(self.discount * 100)

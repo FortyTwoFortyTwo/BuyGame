@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
-from .models import Product, Category
+from .models import Product, Category, Platorm
 
 # Create your views here.
 
@@ -12,6 +12,9 @@ def all_products(request):
     products = Product.objects.all()
     query = None
     categories = None
+    new = None
+    free = None
+    discount = None
     sort = None
     direction = None
 
@@ -37,6 +40,18 @@ def all_products(request):
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
 
+        if 'new' in request.GET:
+            products = products.filter(new=True)
+            new = True
+
+        if 'free' in request.GET:
+            products = products.filter(price__lte=0.0)
+            free = True
+
+        if 'discount' in request.GET:
+            products = products.filter(discount__gt=0.0)
+            discount = True
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -50,8 +65,13 @@ def all_products(request):
 
     context = {
         'products': products,
+        'categories': Category.objects.all(),
+        'platorms': Platorm.objects.all(),
         'search_term': query,
         'current_categories': categories,
+        'current_new': new,
+        'current_free': free,
+        'current_discount': discount,
         'current_sorting': current_sorting,
     }
 
@@ -65,6 +85,8 @@ def product_detail(request, product_id):
 
     context = {
         'product': product,
+        'categories': Category.objects.all(),
+        'platorms': Platorm.objects.all(),
     }
 
     return render(request, 'products/product_detail.html', context)

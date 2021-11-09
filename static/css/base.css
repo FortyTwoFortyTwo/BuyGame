@@ -27,6 +27,16 @@ body {
     width: fit-content;
 }
 
+.shop-notice-new {
+    border: 1px solid green !important;
+    background-color: lightgreen;
+}
+
+.shop-notice-discount {
+    border: 1px solid goldenrod !important;
+    background-color: gold;
+}
+
 .shop-now-button {
     background: black;
     color: white;
