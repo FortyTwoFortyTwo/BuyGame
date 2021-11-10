@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.contrib import messages
+
+from products.models import Product
 
 # Create your views here.
 
@@ -11,6 +14,7 @@ def view_cart(request):
 def add_to_cart(request, item_id):
     """ Add a quantity of the specified product to cart """
 
+    product = Product.objects.get(pk=item_id)
     platorm = int(request.POST.get('platorm'))
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
@@ -23,6 +27,7 @@ def add_to_cart(request, item_id):
         cart[item_id][platorm] += quantity
     else:
         cart[item_id][platorm] = quantity
+        messages.success(request, f'Added {product.name} to your cart')
 
     request.session['cart'] = cart
     return redirect(redirect_url)
