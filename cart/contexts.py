@@ -11,8 +11,8 @@ def cart_contents(request):
     cart = request.session.get('cart', {})
 
     for item_id, platorms in cart.items():
+        product = get_object_or_404(Product, pk=item_id)
         for platorm_id, quantity in platorms.items():
-            product = get_object_or_404(Product, pk=item_id)
             platorm = get_object_or_404(Platorm, pk=platorm_id)
 
             total += quantity * product.get_price()
