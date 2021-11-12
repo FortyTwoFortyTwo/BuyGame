@@ -4,7 +4,7 @@ from django.conf import settings
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
-from products.models import Product
+from products.models import Product, Platorm
 from cart.contexts import cart_contents
 
 import stripe
@@ -40,8 +40,8 @@ def checkout(request):
                         order_line_item = OrderLineItem(
                             order=order,
                             product=product,
+                            platorm=Platorm.objects.get(id=platorm),
                             quantity=quantity,
-                            platorm=platorm,
                         )
                         order_line_item.save()
                 except Product.DoesNotExist:
