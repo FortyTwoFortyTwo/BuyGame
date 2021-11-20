@@ -1,9 +1,9 @@
 from django.db import models
 
-class Platorm(models.Model):
+class Platform(models.Model):
 
     class Meta:
-        verbose_name_plural = 'Platorms'
+        verbose_name_plural = 'Platforms'
     
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
@@ -32,7 +32,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
-    platorms = models.ManyToManyField('Platorm')
+    platforms = models.ManyToManyField('Platform')
     name = models.CharField(max_length=254)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)

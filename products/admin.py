@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, Platorm
+from .models import Product, Category, Platform
 
 # Register your models here.
 
@@ -21,7 +21,7 @@ class CategoryAdmin(admin.ModelAdmin):
         'name',
     )
 
-class PlatormAdmin(admin.ModelAdmin):
+class PlatformAdmin(admin.ModelAdmin):
     list_display = (
         'friendly_name',
         'name',
@@ -30,4 +30,4 @@ class PlatormAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Platorm, PlatormAdmin)
+admin.site.register(Platform, PlatformAdmin)

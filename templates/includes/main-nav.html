@@ -24,12 +24,12 @@
         </li>
 
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="platorm-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Platorms
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="platform-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Platforms
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="platorm-link">
-                {% for platorm in platorms %}
-                    <a href="{% url 'products' %}?platorm={{ platorm.name }}" class="dropdown-item">{{ platorm.friendly_name }}</a>
+            <div class="dropdown-menu border-0" aria-labelledby="platform-link">
+                {% for platform in platforms %}
+                    <a href="{% url 'products' %}?platform={{ platform.name }}" class="dropdown-item">{{ platform.friendly_name }}</a>
                 {% endfor %}
             </div>
         </li>

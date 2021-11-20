@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core import serializers
 from django.http import HttpResponse
-from products.models import Product, Category, Platorm
+from products.models import Product, Category, Platform
 
 
 def raw_products(request):
@@ -16,7 +16,7 @@ def raw_categories(request):
     return HttpResponse(raw, content_type="text/json-comment-filtered")
 
 
-def raw_platorms(request):
-    platorms = Platorm.objects.all()
-    raw = serializers.serialize('json', platorms)
+def raw_platforms(request):
+    platforms = Platform.objects.all()
+    raw = serializers.serialize('json', platforms)
     return HttpResponse(raw, content_type="text/json-comment-filtered")

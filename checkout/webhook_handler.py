@@ -122,13 +122,13 @@ class StripeWH_Handler:
                     original_cart=cart,
                     stripe_pid=pid,
                 )
-                for item_id, platorms in json.loads(cart).items():
+                for item_id, platforms in json.loads(cart).items():
                     product = Product.objects.get(id=item_id)
-                    for platorm, quantity in platorms.items():
+                    for platform, quantity in platforms.items():
                         order_line_item = OrderLineItem(
                             order=order,
                             product=product,
-                            platorm=Platorm.objects.get(id=platorm),
+                            platform=Platform.objects.get(id=platform),
                             quantity=quantity,
                         )
                         order_line_item.save()

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from django.contrib import messages
 
-from products.models import Product, Platorm
+from products.models import Product, Platform
 
 # Create your views here.
 
@@ -14,23 +14,23 @@ def view_cart(request):
 def add_to_cart(request, item_id):
     """ Add a quantity of the specified product to cart """
 
-    platorm_id = request.POST.get('platorm')
+    platform_id = request.POST.get('platform')
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
 
     product = get_object_or_404(Product, pk=item_id)
-    platorm = get_object_or_404(Platorm, pk=platorm_id)
+    platform = get_object_or_404(Platform, pk=platform_id)
 
     if item_id not in list(cart.keys()):
         cart[item_id] = {}
 
-    if platorm_id in list(cart[item_id].keys()):
-        cart[item_id][platorm_id] += quantity
-        messages.success(request, f'Updated {product.name} for {platorm.friendly_name} quantity to {cart[item_id][platorm_id]}')
+    if platform_id in list(cart[item_id].keys()):
+        cart[item_id][platform_id] += quantity
+        messages.success(request, f'Updated {product.name} for {platform.friendly_name} quantity to {cart[item_id][platform_id]}')
     else:
-        cart[item_id][platorm_id] = quantity
-        messages.success(request, f'Added {product.name} for {platorm.friendly_name} to your cart')
+        cart[item_id][platform_id] = quantity
+        messages.success(request, f'Added {product.name} for {platform.friendly_name} to your cart')
 
     request.session['cart'] = cart
     return redirect(redirect_url)
@@ -39,19 +39,19 @@ def add_to_cart(request, item_id):
 def adjust_cart(request, item_id):
     """ Adjust the quantity of the specified product to the specified amount """
 
-    platorm_id = request.POST.get('platorm')
+    platform_id = request.POST.get('platform')
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
 
     product = get_object_or_404(Product, pk=item_id)
-    platorm = get_object_or_404(Platorm, pk=platorm_id)
+    platform = get_object_or_404(Platform, pk=platform_id)
 
     if quantity > 0:
-        cart[item_id][platorm_id] = quantity
-        messages.success(request, f'Updated {product.name} for {platorm.friendly_name} quantity to {cart[item_id][platorm_id]}')
+        cart[item_id][platform_id] = quantity
+        messages.success(request, f'Updated {product.name} for {platform.friendly_name} quantity to {cart[item_id][platform_id]}')
     else:
-        messages.success(request, f'Removed {product.name} for {platorm.friendly_name} from your cart')
-        del cart[item_id][platorm_id]
+        messages.success(request, f'Removed {product.name} for {platform.friendly_name} from your cart')
+        del cart[item_id][platform_id]
         if not cart[item_id]:
             del cart[item_id]
     
@@ -63,16 +63,16 @@ def remove_from_cart(request, item_id):
     """ Remove the item from the shopping cart """
 
     try:
-        platorm_id = request.POST['platorm']
+        platform_id = request.POST['platform']
         cart = request.session.get('cart', {})
 
-        del cart[item_id][platorm_id]
+        del cart[item_id][platform_id]
         if not cart[item_id]:
             del cart[item_id]
 
         product = get_object_or_404(Product, pk=item_id)
-        platorm = get_object_or_404(Platorm, pk=platorm_id)
-        messages.success(request, f'Removed {product.name} for {platorm.friendly_name} from your cart')
+        platform = get_object_or_404(Platform, pk=platform_id)
+        messages.success(request, f'Removed {product.name} for {platform.friendly_name} from your cart')
 
         request.session['cart'] = cart
         return HttpResponse(status=200)

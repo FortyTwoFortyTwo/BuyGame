@@ -20,8 +20,8 @@
                         <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
                     </a>
                 {% endfor %}
-                {% for c in current_platorms %}
-                    <a class="filter-badge text-decoration-none" href="{% url 'products' %}?platorm={{ c.name }}">
+                {% for c in current_platforms %}
+                    <a class="filter-badge text-decoration-none" href="{% url 'products' %}?platform={{ c.name }}">
                         <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
                     </a>
                 {% endfor %}

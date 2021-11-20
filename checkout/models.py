@@ -6,7 +6,7 @@ from django.conf import settings
 
 from django_countries.fields import CountryField
 
-from products.models import Product, Platorm
+from products.models import Product, Platform
 from profiles.models import UserProfile
 
 
@@ -68,7 +68,7 @@ class Order(models.Model):
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
-    platorm = models.ForeignKey(Platorm, null=False, blank=False, on_delete=models.CASCADE)
+    platform = models.ForeignKey(Platform, null=False, blank=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
     
@@ -81,4 +81,4 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
     
     def __str__(self):
-        return f'Product {self.product} Platorm {self.platorm} on order {self.order.order_number}'
+        return f'Product {self.product} Platform {self.platform} on order {self.order.order_number}'

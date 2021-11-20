@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
 
-from .models import Product, Category, Platorm
+from .models import Product, Category, Platform
 from .forms import ProductForm
 
 # Create your views here.
@@ -14,7 +14,7 @@ def all_products(request):
     products = Product.objects.all()
     query = None
     categories = None
-    platorms = None
+    platforms = None
     new = None
     free = None
     discount = None
@@ -43,10 +43,10 @@ def all_products(request):
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
 
-        if 'platorm' in request.GET:
-            platorms = request.GET['platorm'].split(',')
-            products = products.filter(platorms__name__in=platorms)
-            platorms = Platorm.objects.filter(name__in=platorms)
+        if 'platform' in request.GET:
+            platforms = request.GET['platform'].split(',')
+            products = products.filter(platforms__name__in=platforms)
+            platforms = Platform.objects.filter(name__in=platforms)
 
         if 'new' in request.GET:
             products = products.filter(new=True)
@@ -74,10 +74,10 @@ def all_products(request):
     context = {
         'products': products,
         'categories': Category.objects.all(),
-        'platorms': Platorm.objects.all(),
+        'platforms': Platform.objects.all(),
         'search_term': query,
         'current_categories': categories,
-        'current_platorms': platorms,
+        'current_platforms': platforms,
         'current_new': new,
         'current_free': free,
         'current_discount': discount,
@@ -95,7 +95,7 @@ def product_detail(request, product_id):
     context = {
         'product': product,
         'categories': Category.objects.all(),
-        'platorms': Platorm.objects.all(),
+        'platforms': Platform.objects.all(),
     }
 
     return render(request, 'products/product_detail.html', context)

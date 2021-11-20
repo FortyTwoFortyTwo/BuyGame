@@ -6,7 +6,7 @@ from django.conf import settings
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 
-from products.models import Product, Platorm
+from products.models import Product, Platform
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from cart.contexts import cart_contents
@@ -60,14 +60,14 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_cart = json.dump(cart)
             order.save()
-            for item_id, platorms in cart.items():
+            for item_id, platforms in cart.items():
                 try:
                     product = Product.objects.get(id=item_id)
-                    for platorm, quantity in platorms.items():
+                    for platform, quantity in platforms.items():
                         order_line_item = OrderLineItem(
                             order=order,
                             product=product,
-                            platorm=Platorm.objects.get(id=platorm),
+                            platform=Platform.objects.get(id=platform),
                             quantity=quantity,
                         )
                         order_line_item.save()

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from products.models import Category, Platorm
+from products.models import Category, Platform
 
 # Create your views here.
 
@@ -8,7 +8,7 @@ def index(request):
 
     context = {
         'categories': Category.objects.all(),
-        'platorms': Platorm.objects.all(),
+        'platforms': Platform.objects.all(),
     }
 
     return render(request, 'home/index.html', context)

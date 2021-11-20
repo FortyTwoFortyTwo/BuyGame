@@ -58,10 +58,10 @@
                         <div class="form-row">
 
                             <div class="col-12">
-                                <p><strong>Platorm:</strong></p>
-                                <select class="form-control rounded-0 w-50" name="platorm" id='id_platorm'>
-                                    {% for platorm in product.platorms.all %}
-                                        <option value="{{ platorm.pk }}">{{ platorm.friendly_name }}</option>
+                                <p><strong>Platform:</strong></p>
+                                <select class="form-control rounded-0 w-50" name="platform" id='id_platform'>
+                                    {% for platform in product.platforms.all %}
+                                        <option value="{{ platform.pk }}">{{ platform.friendly_name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
