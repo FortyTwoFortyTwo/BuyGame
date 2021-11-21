@@ -22,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v0ni+(qq9-9skcqzov1^xfc7u7*-@^oq3xexp#=xrm&w_#-+*='
+SECRET_KEY = os.environ.get('secret_key', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['fortytwo-buygame.herokuapp.com', 'localhost']
 
