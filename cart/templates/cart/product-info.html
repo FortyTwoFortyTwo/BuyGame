@@ -1,0 +1,9 @@
+{% if item.product.discount > 0.0 %}
+    <p class="lead mb-0 text-left">
+        <s>${{ item.product.price }}</s>
+        <span class="font-weight-bold"> ${{ item.product.get_price }}</span>
+        <span class="font-weight-bold shop-notice-discount">-{{ item.product.get_discount }}%</span>
+    </p>
+{% else %}
+    <p class="lead mb-0 text-left font-weight-bold">${{ item.product.price }}</p>
+{% endif %}
