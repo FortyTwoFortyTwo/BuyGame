@@ -41,15 +41,15 @@ def checkout(request):
         cart = request.session.get('cart', {})
 
         form_data = {
-            'full_name': request.POST.get['full_name'],
-            'email': request.POST.get['email'],
-            'phone_number': request.POST.get['phone_number'],
-            'country': request.POST.get['country'],
-            'postcode': request.POST.get['postcode'],
-            'town_or_city': request.POST.get['town_or_city'],
-            'street_address1': request.POST.get['street_address1'],
-            'street_address2': request.POST.get['street_address2'],
-            'county': request.POST.get['county'],
+            'full_name': request.POST.get('full_name'),
+            'email': request.POST.get('email'),
+            'phone_number': request.POST.get('phone_number'),
+            'country': request.POST.get('country'),
+            'postcode': request.POST.get('postcode'),
+            'town_or_city': request.POST.get('town_or_city'),
+            'street_address1': request.POST.get('street_address1'),
+            'street_address2': request.POST.get('street_address2'),
+            'county': request.POST.get('county'),
         }
 
         order_form = OrderForm(form_data)
@@ -57,7 +57,7 @@ def checkout(request):
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
-            order.original_cart = json.dump(cart)
+            order.original_cart = json.dumps(cart)
             order.save()
             for item_id, platforms in cart.items():
                 try:
