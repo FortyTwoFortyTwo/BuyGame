@@ -77,8 +77,6 @@ def all_products(request):
 
     context = {
         'products': products,
-        'categories': Category.objects.all(),
-        'platforms': Platform.objects.all(),
         'search_term': query,
         'current_categories': categories,
         'current_platforms': platforms,
@@ -94,12 +92,8 @@ def all_products(request):
 def product_detail(request, product_id):
     """ A view to show individual product details """
 
-    product = get_object_or_404(Product, pk=product_id)
-
     context = {
-        'product': product,
-        'categories': Category.objects.all(),
-        'platforms': Platform.objects.all(),
+        'product': get_object_or_404(Product, pk=product_id),
     }
 
     return render(request, 'products/product_detail.html', context)
