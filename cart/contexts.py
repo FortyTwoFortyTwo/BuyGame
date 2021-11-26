@@ -7,7 +7,7 @@ from products.models import Product, Platform
 def cart_contents(request):
 
     cart_items = []
-    total = 0
+    total = Decimal(0.0)
     product_count = 0
     cart = request.session.get('cart', {})
 
@@ -25,22 +25,23 @@ def cart_contents(request):
                 'product': product,
             })
 
-    if total < settings.FREE_DELIVERY_THRESHOLD:
-        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
-        free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
+    if total >= settings.SPECIAL_DISCOUNT_THRESHOLD:
+        special_discount_save = int(total * Decimal(settings.SPECIAL_DISCOUNT_PERCENTAGE) * Decimal(100.0)) / Decimal(100.0)
+        special_discount_delta = 0
     else:
-        delivery = 0
-        free_delivery_delta = 0
+        special_discount_save = 0
+        special_discount_delta = Decimal(settings.SPECIAL_DISCOUNT_THRESHOLD) - total
 
-    grand_total = delivery + total
+    grand_total = total - special_discount_save
 
     context = {
         'cart_items': cart_items,
         'total': total,
         'product_count': product_count,
-        'delivery': delivery,
-        'free_delivery_delta': free_delivery_delta,
-        'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
+        'special_discount_save': special_discount_save,
+        'special_discount_delta': special_discount_delta,
+        'special_discount_threshold': settings.SPECIAL_DISCOUNT_THRESHOLD,
+        'special_discount_percentage': settings.SPECIAL_DISCOUNT_PERCENTAGE * 100,
         'grand_total': grand_total,
     }
 
