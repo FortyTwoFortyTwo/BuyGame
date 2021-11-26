@@ -36,6 +36,8 @@
                                 <span class="font-weight-bold"> £{{ product.get_price }}</span>
                                 <span class="font-weight-bold shop-notice-discount">-{{ product.get_discount }}%</span>
                             </p>
+                        {% elif product.price == 0.0 %}
+                        <p class="lead mb-0 text-left font-weight-bold">Free</p>
                         {% else %}
                             <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
                         {% endif %}
