@@ -55,8 +55,11 @@ def checkout(request):
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
-            pid = request.POST.get('client_secret').split('_secret')[0]
-            order.stripe_pid = pid
+
+            if order.grand_total > 0:
+                pid = request.POST.get('client_secret').split('_secret')[0]
+                order.stripe_pid = pid
+            
             order.original_cart = json.dumps(cart)
             order.save()
             for item_id, platforms in cart.items():
@@ -95,12 +98,15 @@ def checkout(request):
 
         current_cart = cart_contents(request)
         total = current_cart['grand_total']
-        stripe_total = round(total * 100)
-        stripe.api_key = stripe_secret_key
-        intent = stripe.PaymentIntent.create(
-            amount=stripe_total,
-            currency=settings.STRIPE_CURRENCY
-        )
+        if total > 0:
+            stripe_total = round(total * 100)
+            stripe.api_key = stripe_secret_key
+            intent = stripe.PaymentIntent.create(
+                amount=stripe_total,
+                currency=settings.STRIPE_CURRENCY
+            )
+        else:
+            intent = None
 
         # Attempt to prefill the form with any
         # info the user maintains in their profile
@@ -128,11 +134,18 @@ def checkout(request):
         Did you forget to set it in your environment?')
 
     template = 'checkout/checkout.html'
-    context = {
-        'order_form': order_form,
-        'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret,
-    }
+
+    if intent:
+        context = {
+            'order_form': order_form,
+            'stripe_public_key': stripe_public_key,
+            'client_secret': intent.client_secret,
+        }
+    else:
+        context = {
+            'order_form': order_form,
+            'stripe_public_key': stripe_public_key,
+        }
 
     return render(request, template, context)
 

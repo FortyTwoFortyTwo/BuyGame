@@ -1,7 +1,7 @@
 <h6><strong>Cart Total: £{{ total|floatformat:2 }}</strong></h6>
 <h6>Special Discount: {% if special_discount_save > 0 %}-{% endif %}£{{ special_discount_save|floatformat:2 }}</h6>
 <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
-{% if special_discount_delta > 0 %}
+{% if grand_total > 0 and special_discount_delta > 0 %}
     <p class="mb-1 text-danger">
         You could get {{ special_discount_percentage|floatformat:0 }}% off by spending just <strong>£{{ special_discount_delta }}</strong> more!
     </p>
