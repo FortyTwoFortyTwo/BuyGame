@@ -80,8 +80,8 @@ TODO screenshots
 * [Psycopg2](https://pypi.org/project/psycopg2/) for Python database adapter
 * [Gunicorn](https://gunicorn.org/) for WSGI server implementation used to run Python web application
 * [Bootstrap4](https://getbootstrap.com) for the grid layout, components and styling
-
-* [FontAwsome](https://fontawesome.com/) as icon provider* [Google Fonts](https://fonts.google.com/specimen/Lato) for Lato fonts
+* [FontAwsome](https://fontawesome.com/) as icon provider
+* [Google Fonts](https://fonts.google.com/specimen/Lato) for Lato fonts
 * [JQuery](https://jquery.com/) for JavaScript library to simplify HTML DOM manipulation
 * [Git](https://git-scm.com) for version control
 * [GitHub](https://github.com) for the repository to store the files
