@@ -9,7 +9,7 @@ def cart_contents(request):
     cart_items = []
     total = Decimal(0.0)
     product_count = 0
-    cart = request.session.get('cart', {})
+    cart = request.session.get("cart", {})
 
     for item_id, platforms in cart.items():
         product = get_object_or_404(Product, pk=item_id)
@@ -19,10 +19,10 @@ def cart_contents(request):
             total += quantity * product.get_price()
             product_count += quantity
             cart_items.append({
-                'item_id': item_id,
-                'platform': platform,
-                'quantity': quantity,
-                'product': product,
+                "item_id": item_id,
+                "platform": platform,
+                "quantity": quantity,
+                "product": product,
             })
 
     if total >= settings.SPECIAL_DISCOUNT_THRESHOLD:
@@ -35,14 +35,14 @@ def cart_contents(request):
     grand_total = total - special_discount_save
 
     context = {
-        'cart_items': cart_items,
-        'total': total,
-        'product_count': product_count,
-        'special_discount_save': special_discount_save,
-        'special_discount_delta': special_discount_delta,
-        'special_discount_threshold': settings.SPECIAL_DISCOUNT_THRESHOLD,
-        'special_discount_percentage': settings.SPECIAL_DISCOUNT_PERCENTAGE * 100,
-        'grand_total': grand_total,
+        "cart_items": cart_items,
+        "total": total,
+        "product_count": product_count,
+        "special_discount_save": special_discount_save,
+        "special_discount_delta": special_discount_delta,
+        "special_discount_threshold": settings.SPECIAL_DISCOUNT_THRESHOLD,
+        "special_discount_percentage": settings.SPECIAL_DISCOUNT_PERCENTAGE * 100,
+        "grand_total": grand_total,
     }
 
     return context

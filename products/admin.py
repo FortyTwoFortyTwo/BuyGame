@@ -6,28 +6,28 @@ from .models import Product, Category, Platform
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
-        'name',
-        'category',
-        'price',
-        'rating',
-        'new',
-        'discount',
+        "name",
+        "category",
+        "price",
+        "rating",
+        "new",
+        "discount",
     )
 
-    ordering = ('name',)
+    ordering = ("name",)
 
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
-        'friendly_name',
-        'name',
+        "friendly_name",
+        "name",
     )
 
 
 class PlatformAdmin(admin.ModelAdmin):
     list_display = (
-        'friendly_name',
-        'name',
+        "friendly_name",
+        "name",
     )
 
 

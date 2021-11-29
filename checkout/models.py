@@ -16,11 +16,11 @@ class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True,
-                                     related_name='orders')
+                                     related_name="orders")
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.CharField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
-    country = CountryField(blank_label='Country *', null=False, blank=False)
+    country = CountryField(blank_label="Country *", null=False, blank=False)
     postcode = models.CharField(max_length=20, null=True, blank=True)
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
@@ -33,9 +33,9 @@ class Order(models.Model):
                                       null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2,
                                       null=False, default=0)
-    original_cart = models.TextField(null=False, blank=False, default='')
+    original_cart = models.TextField(null=False, blank=False, default="")
     stripe_pid = models.CharField(max_length=254, null=False,
-                                  blank=False, default='')
+                                  blank=False, default="")
 
     def _generate_order_number(self):
         """
@@ -49,7 +49,7 @@ class Order(models.Model):
         accounting for delivery costs.
         """
         self.order_total = (self.lineitems.aggregate(
-            Sum('lineitem_total'))['lineitem_total__sum'] or 0)
+            Sum("lineitem_total"))["lineitem_total__sum"] or 0)
         if self.order_total >= settings.SPECIAL_DISCOUNT_THRESHOLD:
             self.discount_cost = int(self.order_total * Decimal(settings.SPECIAL_DISCOUNT_PERCENTAGE) * Decimal(100.0)) / Decimal(100.0)
         else:
@@ -61,7 +61,7 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         """
         Override the original save method to set the order number
-        if it hasn't been set already.
+        if it hasn"t been set already.
         """
         if not self.order_number:
             self.order_number = self._generate_order_number()
@@ -75,7 +75,7 @@ class Order(models.Model):
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False,
                               on_delete=models.CASCADE,
-                              related_name='lineitems')
+                              related_name="lineitems")
     product = models.ForeignKey(Product, null=False,
                                 blank=False, on_delete=models.CASCADE)
     platform = models.ForeignKey(Platform, null=False,
@@ -94,5 +94,5 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return (f'Product {self.product} Platform {self.platform} '
-                f'on order {self.order.order_number}')
+        return (f"Product {self.product} Platform {self.platform} "
+                f"on order {self.order.order_number}")
