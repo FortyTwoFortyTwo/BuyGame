@@ -258,7 +258,7 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=94608000'  
 }
 
-AWS_STORAGE_BUCKET_NAME = 'egg-sell-nt'  
+AWS_STORAGE_BUCKET_NAME = 'fortytwo-buygame'  
 AWS_S3_REGION_NAME = 'eu-west-1'  
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")  
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")  
@@ -313,7 +313,7 @@ DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 21. Once the build is complete, click on `Open app`
 
-22. Went to `settings.py` and added `egg-sell-nt.herokuapp.com` to `ALLOWED_HOSTS`
+22. Went to `settings.py` and added `fortytwo-buygame.herokuapp.com` to `ALLOWED_HOSTS`
 
 23. Ran `git add .`, `git commit -m "my commit message"` and `git push` commands to push all changes to my GitHub repository.
 
