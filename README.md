@@ -95,7 +95,11 @@ TODO screenshots
 ## Database
 The DJango's model relational database is used.
 
-The application uses 3 databases to store list of games, 'Product', 'Category' and 'Platform'.
+3 databases are used to store list of games, 'Product', 'Category' and 'Platform'.
+
+2 databases are used to store list of items bought from users, 'Order' and 'OrderLineItem'
+
+1 database are used to store player profiles, 'UserProfile'
 
 #### Product
 - category (Foreign key for 'Category' assigned to it)
@@ -115,6 +119,42 @@ The application uses 3 databases to store list of games, 'Product', 'Category' a
 #### Platform
 - name (Char field for improper name)
 - friendly_name (Char field for name to display)
+
+#### Order
+- order_number (Char field for unique order number generated using UUID)
+- user_profile (Foreign key for 'UserProfile' assigned to it)
+- full_name (Char field for user's full name)
+- email (Char field for user's email)
+- phone_number (Char field for user's phone number)
+- country (Country field for user's country)
+- postcode (Char field for user's post code)
+- town_or_city (Char field for user's town or city)
+- street_address1 (Char field for user's 1st street address)
+- street_address2 (Char field for user's 2nd street address)
+- county (Char field for user's country)
+- date (Date time field for time order is bought)
+- discount_cost (Decimal field for special discount in percentage when bought it)
+- order_total (Decimal field for cost without special discount)
+- grand_total (Decimal field for overall cost)
+- original_cart (Text field for contents bought in cart as JSON)
+- stripe_pid (Char field for stripe PID)
+
+#### OrderLineItem
+- order (Foreign key for 'Order' assigned to it)
+- product (Foreign key for 'Product' to buy)
+- platform (Foreign key for 'Platform' used to buy)
+- quantity (Integer field for quantity amount to buy)
+- lineitem_total (Decimal field for total cost to buy)
+
+#### UserProfile
+- user (One to one field for django's 'User' auth model)
+- default_phone_number (Char field for user's default phone number)
+- default_street_address1 (Char field for user's default 1st street address)
+- default_street_address2 (Char field for user's default 2nd street address)
+- default_town_or_city (Char field for user's default town or city)
+- default_county (Char field for user's default county)
+- default_postcode (Char field for user's default post code)
+- default_country (Country field for user's default country)
 
 ## Testing
 | Test Label | Test Action | Expected Outcome | Test Outcome |
