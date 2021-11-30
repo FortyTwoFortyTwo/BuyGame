@@ -3,6 +3,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Platform(models.Model):
+    """ Database model to store platforms """
 
     class Meta:
         verbose_name_plural = "Platforms"
@@ -18,6 +19,7 @@ class Platform(models.Model):
 
 
 class Category(models.Model):
+    """ Database model to store categories """
 
     class Meta:
         verbose_name_plural = "Categories"
@@ -33,6 +35,8 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """ Database model to store products """
+
     category = models.ForeignKey("Category", null=True,
                                  blank=True, on_delete=models.SET_NULL)
     platforms = models.ManyToManyField("Platform")

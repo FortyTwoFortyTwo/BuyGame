@@ -5,7 +5,10 @@ from products.models import Product, Platform
 
 
 def cart_contents(request):
-
+    """
+    Return current contents in cart,
+    with special discount thresholds
+    """
     cart_items = []
     total = Decimal(0.0)
     product_count = 0

@@ -5,6 +5,8 @@ from .models import Product, Category, Platform
 
 
 class ProductAdmin(admin.ModelAdmin):
+    """Admin model to manage products"""
+
     list_display = (
         "name",
         "category",
@@ -18,6 +20,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
+    """Admin model to manage categories"""
+
     list_display = (
         "friendly_name",
         "name",
@@ -25,6 +29,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class PlatformAdmin(admin.ModelAdmin):
+    """Admin model to manage platforms"""
+
     list_display = (
         "friendly_name",
         "name",
