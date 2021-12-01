@@ -1,12 +1,13 @@
 <script>
-    
+
     // Disable +/- buttons outside 1-99 range
     function handleEnableDisable(itemId, platform) {
-        var currentValue = parseInt($('[data-item_id="' + itemId + '"][data-platform="' + platform + '"]').val());
+        var currentValue = parseInt($('.input_qty_' + itemId + '_' + platform).val());
+        console.log('itemId=' + itemId + ' platform=' + platform + ' currentValue=' + currentValue);
         var minusDisabled = currentValue < 2;
         var plusDisabled = currentValue > 98;
-        $('.decrement-qty[data-item_id="' + itemId + '"][data-platform="' + platform + '"]').prop('disabled', minusDisabled);
-        $('.increment-qty[data-item_id="' + itemId + '"][data-platform="' + platform + '"]').prop('disabled', plusDisabled);
+        $('.decrement-qty_' + itemId + '_' + platform).prop('disabled', minusDisabled);
+        $('.increment-qty_' + itemId + '_' + platform).prop('disabled', plusDisabled);
     }
 
     // Ensure proper enabling/disabling of all inputs on page load
@@ -16,11 +17,15 @@
         var platform = $(allQtyInputs[i]).data('platform');
         handleEnableDisable(itemId, platform);
     }
-    
+
     // Check enable/disable every time the input is changed
     $('.qty_input').change(function(e) {
+        var currentValue = parseInt($(this).val());
+
         var itemId = $(this).data('item_id');
         var platform = $(this).data('platform');
+        $('.input_qty_' + itemId + '_' + platform).val(currentValue);
+
         handleEnableDisable(itemId, platform);
     });
 
@@ -29,9 +34,13 @@
         e.preventDefault();
         var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
         var currentValue = parseInt($(closestInput).val());
-        $(closestInput).val(currentValue + 1);
+
+        console.log('currentValue=' + currentValue);
+
         var itemId = $(this).data('item_id');
         var platform = $(this).data('platform');
+        $('.input_qty_' + itemId + '_' + platform).val(currentValue + 1);
+
         handleEnableDisable(itemId, platform);
     });
 
@@ -40,9 +49,11 @@
         e.preventDefault();
         var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
         var currentValue = parseInt($(closestInput).val());
-        $(closestInput).val(currentValue - 1);
+
         var itemId = $(this).data('item_id');
         var platform = $(this).data('platform');
+        $('.input_qty_' + itemId + '_' + platform).val(currentValue - 1);
+
         handleEnableDisable(itemId, platform);
     });
-</script>
+</script> 

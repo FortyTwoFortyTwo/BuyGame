@@ -96,12 +96,12 @@
                                 </tr>
                             {% endfor %}
                             <tr>
-                                <td colspan="5" class="pt-5 text-right">
+                                <td colspan="6" class="pt-5 text-right">
                                     {% include "cart/cart-total.html" %}
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="5" class="text-right">
+                                <td colspan="6" class="text-right">
                                     {% include "cart/checkout-buttons.html" %}
                                 </td>
                             </tr>
@@ -140,7 +140,7 @@
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
         var csrfToken = "{{ csrf_token }}";
-        var itemId = $(this).attr('id').split('remove_')[1];
+        var itemId = $(this).data('item_id');
         var platform = $(this).data('platform');
         var url = 'remove/' + itemId + '/';
         var data = {'csrfmiddlewaretoken': csrfToken, 'platform': platform};
