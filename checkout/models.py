@@ -53,7 +53,9 @@ class Order(models.Model):
         self.order_total = (self.lineitems.aggregate(
             Sum("lineitem_total"))["lineitem_total__sum"] or 0)
         if self.order_total >= settings.SPECIAL_DISCOUNT_THRESHOLD:
-            self.discount_cost = int(self.order_total * Decimal(settings.SPECIAL_DISCOUNT_PERCENTAGE) * Decimal(100.0)) / Decimal(100.0)
+            self.discount_cost = (int(self.order_total *
+                                  Decimal(settings.SPECIAL_DISCOUNT_PERCENTAGE)
+                                  * Decimal(100.0)) / Decimal(100.0))
         else:
             self.discount_cost = 0
 

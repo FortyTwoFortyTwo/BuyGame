@@ -63,7 +63,7 @@ def checkout(request):
             if order.grand_total > 0:
                 pid = request.POST.get("client_secret").split("_secret")[0]
                 order.stripe_pid = pid
-            
+
             order.original_cart = json.dumps(cart)
             order.save()
             for item_id, platforms in cart.items():

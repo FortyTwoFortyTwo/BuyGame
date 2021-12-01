@@ -10,7 +10,7 @@ class OrderLineItemAdminInLine(admin.TabularInline):
 
 class OrderAdmin(admin.ModelAdmin):
     """ Order model for admin to manage """
-    
+
     inlines = (OrderLineItemAdminInLine,)
 
     readonly_fields = ("order_number", "date",

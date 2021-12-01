@@ -13,7 +13,7 @@ def raw_products(request):
 
 def raw_categories(request):
     """ Return JSON of all categories """
-    
+
     categories = Category.objects.all()
     raw = serializers.serialize("json", categories)
     return HttpResponse(raw, content_type="text/json-comment-filtered")
@@ -21,7 +21,7 @@ def raw_categories(request):
 
 def raw_platforms(request):
     """ Return JSON of all platforms """
-    
+
     platforms = Platform.objects.all()
     raw = serializers.serialize("json", platforms)
     return HttpResponse(raw, content_type="text/json-comment-filtered")

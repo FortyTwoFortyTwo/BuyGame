@@ -29,11 +29,14 @@ def cart_contents(request):
             })
 
     if total >= settings.SPECIAL_DISCOUNT_THRESHOLD:
-        special_discount_save = int(total * Decimal(settings.SPECIAL_DISCOUNT_PERCENTAGE) * Decimal(100.0)) / Decimal(100.0)
+        special_discount_save = int(total * Decimal(
+                                    settings.SPECIAL_DISCOUNT_PERCENTAGE)
+                                    * Decimal(100.0)) / Decimal(100.0)
         special_discount_delta = 0
     else:
         special_discount_save = 0
-        special_discount_delta = Decimal(settings.SPECIAL_DISCOUNT_THRESHOLD) - total
+        special_discount_delta = (Decimal(settings.SPECIAL_DISCOUNT_THRESHOLD)
+                                  - total)
 
     grand_total = total - special_discount_save
 
@@ -44,7 +47,8 @@ def cart_contents(request):
         "special_discount_save": special_discount_save,
         "special_discount_delta": special_discount_delta,
         "special_discount_threshold": settings.SPECIAL_DISCOUNT_THRESHOLD,
-        "special_discount_percentage": settings.SPECIAL_DISCOUNT_PERCENTAGE * 100,
+        "special_discount_percentage":
+            settings.SPECIAL_DISCOUNT_PERCENTAGE * 100,
         "grand_total": grand_total,
     }
 
