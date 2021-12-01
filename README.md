@@ -160,7 +160,7 @@ The DJango's model relational database is used.
 | Test Label | Test Action | Expected Outcome | Test Outcome |
 | --- | --- | --- | --- |
 | HTML Validator | Check for any warnings or errors at [HTML Validator](https://validator.w3.org/) | No warnings or errors reported | PASS |
-| CSS Validator | Check for any warnings or errors at [CSS Validator](https://jigsaw.w3.org/css-validator/) | No warnings or errors reported | TODO |
+| CSS Validator | Check for any warnings or errors at [CSS Validator](https://jigsaw.w3.org/css-validator/) | No warnings or errors reported | PASS |
 | Opening home browser | Opening the home website browser by google chrone, microsoft edge and phones | Home website can be opened | PASS |
 | Screen Size | Resizing all website screens for any sizes above 300 pixels | All websites is responsive when screen changes size to fit | PASS |
 | Opening all products | Select "All Products" in nav bar | All products shown | PASS |
