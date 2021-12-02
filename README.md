@@ -47,7 +47,7 @@ I developed a [website](https://fortytwo-buygame.herokuapp.com/) for Code Instit
 6. As a new user, I want to find free games
 7. As a new user, I want to find good deals
 8. As an admin, I want to add new games
-9. As an admin, I want to edit existing games
+9. As an admin, I want to edit existing games, such as change prices
 10. As an admin, I want to remove existing games
 
 ## Features
@@ -69,7 +69,7 @@ Input user name, email, address and card number
 ## Designs
 ![Home page](README-files/home.png)
 ![Product page](README-files/products.png)
-![Filter new](README-files/products-filter.png)
+![Filter new](README-files/products-new.png)
 ![Sort rating](README-files/products-rating.png)
 ![Product detail page](README-files/product-detail.png)
 ![Product bought](README-files/product-detail-bought.png)
@@ -191,12 +191,20 @@ The DJango's model relational database is used.
 | Change quantity from cart | Change quantity count from cart | Cart count is updated with new quantity | PASS |
 | Delete from cart | Delete game from cart | Game is removed from cart | PASS |
 | Opening cart page | Open cart page from cart icon at top right | Cart page opened with correct amount of games and cost listed | PASS |
-| Checkout | Preform checkout | Game is bought | PASS |
+| Incomplete checkout | Perform checkout without all information filled | Could not perform checkout and highlight missing fields | PASS |
+| Checkout without account | Perform checkout without logged in | Game is bought | PASS |
+| Checkout with account | Perform checkout with an account with default address | Game is bought | PASS |
 | Create account | Create an account | Account created | PASS |
 | Login account | Log in with an existing account | Account logged in | PASS |
+| Update account address | Fill in default address on logged in account | Default address is updated | PASS |
+| Add game as admin | Create a game from admin page with required infromation | Game is created | PASS |
+| Edit game as admin | Edit existing game as admin | Game is edited | PASS |
+| Delete game as admin | Delete existing game as admin | Game is deleted | PASS |
 
 ## Known Bugs
-Completing order does not send confirmation email.
+- Default image is not correctly sized and no check for different size images
+- Sorting product by price does not take into account with discounted price
+- Completing order does not send confirmation email.
 
 ## Deployment
 
