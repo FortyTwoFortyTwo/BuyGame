@@ -46,6 +46,9 @@ I developed a [website](https://fortytwo-buygame.herokuapp.com/) for Code Instit
 5. As a new user, I want to find most popular games
 6. As a new user, I want to find free games
 7. As a new user, I want to find good deals
+8. As an admin, I want to add new games
+9. As an admin, I want to edit existing games
+10. As an admin, I want to remove existing games
 
 ## Features
 
@@ -64,8 +67,15 @@ List of games in cart to buy, update quantities and remove items in cart.
 Input user name, email, address and card number
 
 ## Designs
-
-TODO screenshots
+![Home page](README-files/home.png)
+![Product page](README-files/products.png)
+![Filter new](README-files/products-filter.png)
+![Sort rating](README-files/products-rating.png)
+![Product detail page](README-files/product-detail.png)
+![Product bought](README-files/product-detail-bought.png)
+![Cart page](README-files/cart.png)
+![Checkout page](README-files/checkout.png)
+![Checkout success page](README-files/checkout-success.png)
 
 ## Technologies used
 * HTML5
@@ -167,16 +177,26 @@ The DJango's model relational database is used.
 | Filter product categories | Select any cateogries in nav bar | Only products using selected category shown | PASS |
 | Filter product platforms | Select any platforms in nav bar | Only products using selected platform shown | PASS |
 | Filter special offers | Select any special offers in nav bar | Only products using selected special offers show | PASS |
+| Filter product by name | Use search bar to find product by name | Product with matching name is shown | PASS |
+| Filter product by description | Use search bar to find product by description | Product with matching description is shown | PASS |
+| Filter product by anything else | Use search bar to find product by anything else | Product is not shown, only shows with matching name and description | PASS |
 | Sorting products | Select "Sort Buy..." in products page | Products sorted by selected sort | PASS |
 | Opening game detail page | Select any games in products page | Page about selected game shown | PASS |
 | Buying for platform | Select platform that can only be bought for specific game | Can only select platform for specific game | PASS |
 | Quantity range | Set quantity count by 1-99 range | Can only set quantity count by 1-99 range | PASS |
-| Add to cart | Add game with selected platform and quantity to cart | Game added to cart | PASS |
+| Add single game to cart | Add single game with selected platform and quantity to cart | Game added to cart | PASS |
+| Add different game to cart | Add  different game with selected platform and quantity to existing cart | Game separately added to cart | PASS |
+| Add different platform game to cart | Add same game with different platform and quantity to cart | Game separately added to cart | PASS |
+| Add same game to cart | Add same game with same platform and quantity to cart | Existing game quantity is increased by selected amount | PASS |
+| Change quantity from cart | Change quantity count from cart | Cart count is updated with new quantity | PASS |
+| Delete from cart | Delete game from cart | Game is removed from cart | PASS |
 | Opening cart page | Open cart page from cart icon at top right | Cart page opened with correct amount of games and cost listed | PASS |
 | Checkout | Preform checkout | Game is bought | PASS |
+| Create account | Create an account | Account created | PASS |
+| Login account | Log in with an existing account | Account logged in | PASS |
 
 ## Known Bugs
-There are currently no known bugs
+Completing order does not send confirmation email.
 
 ## Deployment
 
